@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> {{ title }} нас</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
     {{ body }}
-    <h1>Все главное о нас</h1>
-</body>
-</html>
+{% endblock %}

@@ -1,11 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-    {{ body }}
-    <h1>Сайт о известных личностях нашего времени</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} {% endblock %}
+
+{% block content %}
+<ul>
+    <li>
+        <a href=" {% url 'index' %}"> Главная страница</a>
+    </li>
+    {% for item in menu %}
+    <li>
+        <a href=" {% url item.url_name %}">
+            {{ item.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for p in posts %}
+    {% if p.is_published %}
+    <li>
+        <h2>{{ p.title }}</h2>
+        <p> {{ p.content }} </p>
+
+        <p>
+            <a href="{% url 'post' p.id %}">Читать пост</a>
+        </p>
+
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}
